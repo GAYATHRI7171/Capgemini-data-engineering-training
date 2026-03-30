@@ -1,33 +1,25 @@
+from pyspark.sql import SparkSession
 
-# Capgemini Data Engineering Training
+spark = SparkSession.builder.appName("Phase1").getOrCreate()
 
-This repository contains my complete learning journey during the Capgemini Data Engineering Training Program.
+# Create DataFrame
+customers = spark.createDataFrame([
+    (1, "Ravi", "Hyderabad", 25),
+    (2, "Sita", "Chennai", 32),
+    (3, "Arun", "Hyderabad", 28)
+], ["customer_id", "customer_name", "city", "age"])
 
-## Objective
-To become industry-ready by learning SQL, PySpark, and Data Engineering concepts through hands-on practice.
+# 1. Show all customers
+customers.show()
 
-## Week 0 Overview
-Week 0 focuses on building strong fundamentals in:
-- SQL queries
-- PySpark basics
-- Data processing concepts
+# 2. Filter Chennai
+customers.filter(customers.city == "Chennai").show()
 
-## What I Learned
-- Writing SQL queries (SELECT, WHERE, GROUP BY, JOINS)
-- Mapping SQL logic to PySpark
-- Data transformation using PySpark
-- Basic pipeline understanding
+# 3. Age > 25
+customers.filter(customers.age > 25).show()
 
-## Approach
-I focused on:
-- Practicing queries
-- Understanding logic (not memorizing)
-- Implementing using PySpark
-- Tracking outputs and results
+# 4. Select columns
+customers.select("customer_name", "city").show()
 
-## Repository Structure
-- week0 → foundational learning
-- upcoming weeks → advanced concepts and projects
-
-## Goal
-To become a Data Engineer capable of working on real-world data pipelines and business problems.
+# 5. GroupBy count
+customers.groupBy("city").count().show()
