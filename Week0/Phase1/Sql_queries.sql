@@ -1,3 +1,14 @@
+-- 1. Show all customers
+SELECT * FROM customers;
 
-Learned PySpark methods for data loading, transformation, and analysis such as read(), select(), filter(), withColumn(), groupBy(), agg(), and join().
-Also used functions for handling missing data, window operations, SQL queries, and writing data like na.fill(), row_number(), spark.sql(), and write().
+-- 2. Customers from Chennai
+SELECT * FROM customers WHERE city = 'Chennai';
+
+-- 3. Customers with age > 25
+SELECT * FROM customers WHERE age > 25;
+
+-- 4. Show name and city
+SELECT customer_name, city FROM customers;
+
+-- 5. Count customers city-wise
+SELECT city, COUNT(*) FROM customers GROUP BY city;
